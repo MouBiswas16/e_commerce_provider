@@ -1,0 +1,15 @@
+export 'package:flutter/material.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'package:e_commerce_provider/utils/constants.dart';
+export 'package:e_commerce_provider/features/screens/nav_bar_screen.dart';
+export 'package:e_commerce_provider/features/screens/Home/Widget/home_app_bar.dart';
+export 'package:e_commerce_provider/features/screens/Home/Widget/home_image_slider.dart';
+export 'package:e_commerce_provider/features/screens/Home/Widget/home_search_bar.dart';
+export 'package:e_commerce_provider/core/models/category_model.dart';
+export 'package:e_commerce_provider/core/models/product_model.dart';
+export 'package:e_commerce_provider/features/screens/Home/Widget/home_product_card.dart';
+export 'package:e_commerce_provider/features/screens/Home/Widget/category.dart';
+export 'package:e_commerce_provider/features/screens/Details/widget/detail_app_bar.dart';
+export 'package:e_commerce_provider/features/screens/Details/widget/detail_image_slider.dart';
+export 'package:e_commerce_provider/features/screens/Details/widget/item_detail.dart';
+export 'package:e_commerce_provider/features/screens/Details/detail_screen.dart';
