@@ -2,47 +2,29 @@
 
 import 'package:e_commerce_provider/core/export/export.dart';
 
-class CartScreen extends StatefulWidget {
-  const CartScreen({super.key});
+class Favorite extends StatefulWidget {
+  const Favorite({super.key});
 
   @override
-  State<CartScreen> createState() => _CartScreenState();
+  State<Favorite> createState() => _FavoriteState();
 }
 
-class _CartScreenState extends State<CartScreen> {
+class _FavoriteState extends State<Favorite> {
   @override
   Widget build(BuildContext context) {
-    final provider = CartProvider.of(context);
-    final finalList = provider.cart;
-
-    productQuantity(IconData icon, int index) {
-      return GestureDetector(
-        onTap: () {
-          setState(() {
-            icon == Icons.add
-                ? provider.incrementQtn(index)
-                : provider.decrementQtn(index);
-          });
-        },
-        child: Icon(
-          icon,
-          size: 18,
-        ),
-      );
-    }
-
+    final provider = FavoriteProvider.of(context);
+    final finalList = provider.favorites;
     return Scaffold(
-      bottomSheet: CheckOutBox(),
       backgroundColor: kcontentColor,
       body: Column(
         children: [
-          SizedBox(height: 28),
-          CartAppBar(),
+          SizedBox(height: 38),
+          FavoriteAppBar(),
           Expanded(
             child: ListView.builder(
               itemCount: finalList.length,
               itemBuilder: (context, index) {
-                final cartItems = finalList[index];
+                final favoriteItems = finalList[index];
                 return Stack(
                   children: [
                     Padding(
@@ -57,38 +39,38 @@ class _CartScreenState extends State<CartScreen> {
                         child: Row(
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.18,
-                              width: MediaQuery.of(context).size.height * 0.18,
+                              height: MediaQuery.of(context).size.height * 0.19,
+                              width: MediaQuery.of(context).size.height * 0.19,
                               decoration: BoxDecoration(
                                 color: kcontentColor,
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               padding: EdgeInsets.all(8),
-                              child: Image.asset(cartItems.image),
+                              child: Image.asset(favoriteItems.image),
                             ),
                             SizedBox(width: 8),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  cartItems.title,
+                                  favoriteItems.title,
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                      color: Colors.black),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
                                 ),
                                 SizedBox(height: 5),
                                 Text(
-                                  cartItems.category,
+                                  favoriteItems.category,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: 15,
                                     color: Colors.grey,
                                   ),
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  "\$${cartItems.price}",
+                                  "\$${favoriteItems.price}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -101,8 +83,8 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 42,
-                      right: 22,
+                      top: 48,
+                      right: 28,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
@@ -115,36 +97,7 @@ class _CartScreenState extends State<CartScreen> {
                             icon: Icon(
                               Icons.delete,
                               color: Colors.red,
-                              size: 20,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Container(
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: kcontentColor,
-                              border: Border.all(
-                                color: Colors.grey.shade200,
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: Row(
-                              children: [
-                                SizedBox(width: 8),
-                                productQuantity(Icons.add, index),
-                                SizedBox(width: 8),
-                                Text(
-                                  cartItems.quantity.toString(),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                SizedBox(width: 8),
-                                productQuantity(Icons.remove, index),
-                                SizedBox(width: 8),
-                              ],
+                              size: 26,
                             ),
                           ),
                         ],

@@ -12,6 +12,8 @@ class _DetailAddToCartState extends State<DetailAddToCart> {
   int currentIndex = 1;
   @override
   Widget build(BuildContext context) {
+    final provider = CartProvider.of(context);
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 18),
       child: Container(
@@ -34,7 +36,13 @@ class _DetailAddToCartState extends State<DetailAddToCart> {
               child: Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (currentIndex != 1) {
+                        setState(() {
+                          currentIndex--;
+                        });
+                      }
+                    },
                     icon: Icon(Icons.remove),
                     iconSize: 18,
                     color: Colors.white,
@@ -49,7 +57,11 @@ class _DetailAddToCartState extends State<DetailAddToCart> {
                   ),
                   SizedBox(width: MediaQuery.of(context).size.height * 0.006),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        currentIndex++;
+                      });
+                    },
                     icon: Icon(Icons.add),
                     iconSize: 18,
                     color: Colors.white,
@@ -59,7 +71,21 @@ class _DetailAddToCartState extends State<DetailAddToCart> {
             ),
             SizedBox(width: MediaQuery.of(context).size.height * 0.007),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                provider.toggleFavorite(widget.product);
+                const snackBar = SnackBar(
+                  content: Text(
+                    "Successfully added!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  duration: Duration(seconds: 1),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              },
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.06,
                 decoration: BoxDecoration(

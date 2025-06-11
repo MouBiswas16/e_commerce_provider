@@ -3,10 +3,12 @@
 import 'package:e_commerce_provider/core/export/export.dart';
 
 class DetailAppBar extends StatelessWidget {
-  const DetailAppBar({super.key});
+  final ProductModel product;
+  const DetailAppBar({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
+    final provider = FavoriteProvider.of(context);
     return Padding(
       padding: EdgeInsets.only(top: 18, left: 12, right: 12),
       child: Row(
@@ -37,13 +39,21 @@ class DetailAppBar extends StatelessWidget {
               ),
               SizedBox(width: 18),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  provider.toggleFavorite(product);
+                },
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.white,
                   padding: EdgeInsets.all(12),
                 ),
                 // iconSize: 28,
-                icon: Icon(Icons.favorite),
+                icon: Icon(
+                  provider.isExist(product)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: Colors.black,
+                  size: 23,
+                ),
               ),
             ],
           ),

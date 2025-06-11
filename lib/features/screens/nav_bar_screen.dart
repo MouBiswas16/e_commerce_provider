@@ -1,10 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:e_commerce_provider/features/screens/Cart/cart_screen.dart';
-import 'package:e_commerce_provider/features/screens/Home/home_screen.dart';
-import 'package:e_commerce_provider/features/screens/favorite.dart';
-import 'package:e_commerce_provider/utils/constants.dart';
-import 'package:flutter/material.dart';
+import 'package:e_commerce_provider/core/export/export.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -16,11 +12,11 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int currentIndex = 2;
   List screens = const [
-    Scaffold(),
-    Favorite(),
+    HomeScreen(),
+    Favorite(), 
     HomeScreen(),
     CartScreen(),
-    Scaffold(),
+    ProfileScreen(),
   ];
 
   @override
